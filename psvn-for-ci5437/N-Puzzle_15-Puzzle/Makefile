@@ -34,6 +34,10 @@ psvn2c_abstraction.c:
 	$(CXX) $(OPT) ../global/astar.cpp -include $< -include ../global/heuristic.cpp -o $@
 	rm -f $*.c
 
+%.idastar: %.c ../global/idastar.cpp
+	$(CXX) $(OPT) ../global/idastar.cpp -include $< -include ../global/heuristic.cpp -o $@
+	rm -f $*.c
+
 .PHONY: clean
 clean:
 	rm -fr *.succ *.dist *.distSummary *.astar psvn2c_core.c psvn2c_state_map.c psvn2c_abstraction.c *.dSYM *.o *~

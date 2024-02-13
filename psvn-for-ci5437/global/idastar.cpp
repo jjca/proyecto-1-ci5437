@@ -39,7 +39,7 @@ pair<bool, unsigned int> f_bounded_dfs_visit(unsigned int bound, unsigned int g,
         char *estado_Ptr;
         char estado[100];
         estado_Ptr = estado;
-        const size_t len = 50;
+        const size_t len = 100;
         sprint_state(estado_Ptr,len,&state);
         cout << "Estado meta alcanzado: " << estado << endl;
         pair p = make_pair(true,f);

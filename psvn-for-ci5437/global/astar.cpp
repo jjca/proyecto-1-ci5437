@@ -5,6 +5,9 @@
 #include <string>
 #include <string.h>
 #include "heuristic.hpp"
+using namespace std;
+
+int64_t nodos = 0;
 
 int a_star(state_t start, Heuristic* h){
     ruleid_iterator_t iter;
@@ -31,11 +34,20 @@ int a_star(state_t start, Heuristic* h){
             state_map_add(map, &state, distance);
 
             if (is_goal(&state)) {
+                char *estado_Ptr;
+                char estado[100];
+                estado_Ptr = estado;
+                const size_t len = 100;
+                sprint_state(estado_Ptr,len,&state);
+                cout << "Estado meta alcanzado: " << estado << endl;
+                cout << "Profundidad: " << distance << endl;
+                cout << "Nodos generados: " << nodos << endl;
                 return distance; 
             }
 
             init_fwd_iter(&iter, &state);
             while( (ruleid = next_ruleid(&iter) ) >= 0 ) {
+                nodos++;
                 apply_fwd_rule(ruleid, &state, &child);
                 const int child_d = distance + get_fwd_rule_cost(ruleid);
 
@@ -88,9 +100,9 @@ int main(int argc, char **argv) {
         }
 
         std::cout << "Solving " << content << "\n";
-
+        nodos = 0;
         int distance = a_star(state, h);
-
+        nodos = 0;
         output_file << content << "    " << distance << "\n";
     }
 

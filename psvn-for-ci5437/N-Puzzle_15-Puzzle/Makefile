@@ -18,6 +18,19 @@ psvn2c_abstraction.c:
 
 .PRECIOUS: %.c
 
+abstractor:
+	@echo "**** Constructing abstractor ..."
+	@$(CXX) $(OPT) ../src/abstractor.cpp ../src/psvn.cpp -o $@
+
+%.pdb: abstractor
+	@rm -f `basename $*`.abst `basename $*`.pdb `basename $*`.psvn
+	@echo "**** Running abstractor on `dirname $*`.psvn with `basename $*`.txt ..."
+	@./abstractor `dirname $*`.psvn `basename $*` < `basename $*`.txt > /dev/null
+	@make `basename $*`.distSummary
+	@echo "**** Constructing PDB `basename $*`.pdb ..."
+	@./`basename $*`.distSummary `basename $*`.pdb
+	@rm -f abstractor `basename $*`.distSummary
+
 %.succ: %.c ../global/succ.c
 	$(CC) $(OPT) ../global/succ.c -include $< -o $@
 	rm -f $*.c

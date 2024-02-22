@@ -15,6 +15,9 @@ Heuristic* get_heuristic(const char* heuristic_type){
     if(strcmp(heuristic_type, "-m") == 0){
         return new ManhattanHeuristic();
     }
+    else if(strcmp(heuristic_type, "-p15") == 0){
+        return new Puzzle15PDB();
+    }
 
     return NULL;
 }
@@ -82,7 +85,7 @@ int idastar(state_t start) {
 
 int main(int argc, char **argv) {
     if(argc < 4) {
-        cout << "Missing arguments. Try running ./<program>.astar <input_file> <output_file> -<flag> \n";
+        cout << "Missing arguments. Try running ./<program>.idastar <input_file> <output_file> -<flag> \n";
         return 0;
     }
 

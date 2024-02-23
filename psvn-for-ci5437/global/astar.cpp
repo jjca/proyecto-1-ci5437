@@ -76,6 +76,9 @@ Heuristic* get_heuristic(const char* heuristic_type){
     else if(strcmp(heuristic_type, "-r") == 0){
         return new Rubik();
     }
+    else if(strcmp(heuristic_type, "-ts") == 0){
+        return new TopSpin();
+    }
 
     return NULL;
 }

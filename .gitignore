@@ -9,6 +9,8 @@
 *.idastar
 *.distSummary
 *.astar
+*.pdb
+*.bfs
 
 # Precompiled Headers
 *.gch

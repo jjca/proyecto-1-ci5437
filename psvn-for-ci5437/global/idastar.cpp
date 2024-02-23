@@ -17,6 +17,11 @@ Heuristic* get_heuristic(const char* heuristic_type){
     }
     else if(strcmp(heuristic_type, "-p15") == 0){
         return new Puzzle15PDB();
+    }else if(strcmp(heuristic_type, "-p24") == 0){
+        return new Puzzle24PDB();
+    }
+    else if(strcmp(heuristic_type, "-r") == 0){
+        return new Rubik();
     }
 
     return NULL;

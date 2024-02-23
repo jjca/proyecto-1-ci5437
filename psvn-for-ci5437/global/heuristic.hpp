@@ -44,6 +44,54 @@ private:
     state_t state3;
 };
 
+class Puzzle24PDB: public Heuristic{
+public:
+    Puzzle24PDB();
+    int get_value(state_t state);
+
+    
+
+private:
+    state_map_t* piece1;
+    state_map_t* piece2;
+    state_map_t* piece3; 
+
+    abstraction_t* abts1;
+    abstraction_t* abts2;
+    abstraction_t* abts3;
+
+    state_t state1;
+    state_t state2;
+    state_t state3;
+};
+
+class Rubik: public Heuristic{
+public:
+    Rubik();
+    int get_value(state_t state);
+
+    
+
+private:
+    state_map_t* piece1;
+    state_map_t* piece2;
+    state_map_t* piece3;
+    state_map_t* piece4; 
+    state_map_t* piece5; 
+
+    abstraction_t* abts1;
+    abstraction_t* abts2;
+    abstraction_t* abts3;
+    abstraction_t* abts4;
+    abstraction_t* abts5;
+
+    state_t state1;
+    state_t state2;
+    state_t state3;
+    state_t state4;
+    state_t state5;
+};
+
 
 
 #endif

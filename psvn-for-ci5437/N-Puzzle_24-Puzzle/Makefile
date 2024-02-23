@@ -1,7 +1,7 @@
 CC = gcc
 CXX = g++
 OPT = -Wall -O3 -Wno-unused-function -Wno-unused-variable
-PSVNOPT = --state_map --backwards_moves --fwd_history_len=2 --bwd_history_len=0 --verbosity=9
+PSVNOPT = --state_map --backwards_moves --fwd_history_len=2 --bwd_history_len=0
 
 psvn2c_core.c:
 	cp ../src/psvn2c_core.c ./psvn2c_core.c
@@ -18,6 +18,19 @@ psvn2c_abstraction.c:
 
 .PRECIOUS: %.c
 
+abstractor:
+	@echo "**** Constructing abstractor ..."
+	@$(CXX) $(OPT) ../src/abstractor.cpp ../src/psvn.cpp -o $@
+
+%.pdb: abstractor
+	@rm -f `basename $*`.abst `basename $*`.pdb `basename $*`.psvn
+	@echo "**** Running abstractor on `dirname $*`.psvn with `basename $*`.txt ..."
+	@./abstractor `dirname $*`.psvn `basename $*` < `basename $*`.txt > /dev/null
+	@make `basename $*`.distSummary
+	@echo "**** Constructing PDB `basename $*`.pdb ..."
+	@./`basename $*`.distSummary `basename $*`.pdb
+	@rm -f abstractor `basename $*`.distSummary
+
 %.succ: %.c ../global/succ.c
 	$(CC) $(OPT) ../global/succ.c -include $< -o $@
 	rm -f $*.c
@@ -32,11 +45,11 @@ psvn2c_abstraction.c:
 
 %.astar: %.c ../global/astar.cpp
 	$(CXX) $(OPT) ../global/astar.cpp -include $< -include ../global/heuristic.cpp -o $@
-	# rm -f $*.c
+	rm -f $*.c
 
 %.idastar: %.c ../global/idastar.cpp
 	$(CXX) $(OPT) ../global/idastar.cpp -include $< -include ../global/heuristic.cpp -o $@
-	# rm -f $*.c
+	rm -f $*.c
 
 .PHONY: clean
 clean:

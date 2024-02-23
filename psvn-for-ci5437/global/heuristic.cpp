@@ -79,3 +79,60 @@ int Puzzle15PDB::get_value(state_t state)
 
     return value;
 }
+
+Puzzle24PDB::Puzzle24PDB()
+{
+    FILE* file1 = fopen("abst_1.pdb","r");
+    FILE* file2 = fopen("abst_2.pdb","r");
+    FILE* file3 = fopen("abst_3.pdb","r");
+
+    abts1 = read_abstraction_from_file("abst_1.abst");
+    abts2 = read_abstraction_from_file("abst_2.abst");
+    abts3 = read_abstraction_from_file("abst_3.abst");
+
+    piece1 = read_state_map(file1);
+    piece2 = read_state_map(file2);
+    piece3 = read_state_map(file3);
+
+    fclose(file1);
+    fclose(file2);
+    fclose(file3);
+};
+
+int Puzzle24PDB::get_value(state_t state)
+{
+    abstract_state(abts1, &state, &state1);
+    abstract_state(abts2, &state, &state2);
+    abstract_state(abts3, &state, &state3);
+
+    int value = *state_map_get(piece1, &state1) + *state_map_get(piece2, &state2) + *state_map_get(piece3, &state3);
+
+    return value;
+};
+
+Rubik::Rubik()
+{
+    FILE* file1 = fopen("abst_corner.pdb","r");
+    FILE* file2 = fopen("abst_edges_1.pdb","r");
+    FILE* file3 = fopen("abst_edges_2.pdb","r");
+    FILE* file4 = fopen("abst_edges_3.pdb","r");
+    FILE* file5 = fopen("abst_edges_4.pdb","r");
+
+    abts1 = read_abstraction_from_file("abst_corner.abst");
+    abts2 = read_abstraction_from_file("abst_edges_1.abst");
+    abts3 = read_abstraction_from_file("abst_edges_2.abst");
+    abts4 = read_abstraction_from_file("abst_edges_3.abst");
+    abts5 = read_abstraction_from_file("abst_edges_4.abst");
+
+    piece1 = read_state_map(file1);
+    piece2 = read_state_map(file2);
+    piece3 = read_state_map(file3);
+    piece4 = read_state_map(file4);
+    piece5 = read_state_map(file5);
+
+    fclose(file1);
+    fclose(file2);
+    fclose(file3);
+    fclose(file4);
+    fclose(file5);
+};

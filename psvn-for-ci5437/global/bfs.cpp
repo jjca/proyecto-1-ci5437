@@ -22,6 +22,7 @@ int bfs(state_t *goal, int pruning) {
     int history = init_history;
     queue_history.push(history);
     queue.push(*goal);
+    printf("Profundidad | Nodos | BF \n");
     while (!queue.empty())
     {
         number_of_childs_per_depth = queue.size();
@@ -53,7 +54,7 @@ int bfs(state_t *goal, int pruning) {
             }
             
         }
-        printf("Profundidad: %d, nodos: %d; BF: %.3f \n",depth,number_of_childs_per_depth,(float)number_of_childs/number_of_childs_per_depth);
+        printf("%d | %d | %.3f \n",depth,number_of_childs_per_depth,(float)number_of_childs/number_of_childs_per_depth);
         depth++;    
     }
     return 0;

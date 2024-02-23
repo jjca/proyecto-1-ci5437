@@ -60,8 +60,6 @@ int bfs(state_t *goal, int pruning) {
 }
 
 int main(int argc, char **argv){
-    printf("AHOAFSAF");
-    printf("%d argc",argc);
     if (argc != 2){
         cout << "Número incorrecto de argumentos. Poner 1 para pruning, 0 para no pruning" << endl;
         return -1;

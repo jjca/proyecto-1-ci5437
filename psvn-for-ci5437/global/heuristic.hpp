@@ -126,6 +126,20 @@ private:
     state_t state3;
 };
 
+class Hanoi: public Heuristic{
+public:
+    Hanoi();
+    int get_value(state_t state);
 
+private:
+    state_map_t* piece1;
+    state_map_t* piece2;
+
+    abstraction_t* abts1;
+    abstraction_t* abts2;
+
+    state_t state1;
+    state_t state2;
+};
 
 #endif

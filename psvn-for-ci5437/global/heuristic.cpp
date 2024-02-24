@@ -199,3 +199,38 @@ int TopSpin::get_value(state_t state)
 
     return value;   
 };
+
+Hanoi::Hanoi()
+{
+    FILE* file1 = fopen("abst_1.pdb","r");
+    FILE* file2 = fopen("abst_2.pdb","r");
+    FILE* file3 = fopen("abst_3.pdb","r");
+    FILE* file4 = fopen("abst_4.pdb","r");
+
+    abts1 = read_abstraction_from_file("abst_1.abst");
+    abts2 = read_abstraction_from_file("abst_2.abst");
+    abts3 = read_abstraction_from_file("abst_3.abst");
+    abts4 = read_abstraction_from_file("abst_4.abst");
+
+    piece1 = read_state_map(file1);
+    piece2 = read_state_map(file2);
+    piece3 = read_state_map(file3);
+    piece4 = read_state_map(file4);
+
+    fclose(file1);
+    fclose(file2);
+    fclose(file3);
+    fclose(file4);
+};
+
+int Hanoi::get_value(state_t state)
+{
+    abstract_state(abts1, &state, &state1);
+    abstract_state(abts2, &state, &state2);
+    abstract_state(abts3, &state, &state3);
+    abstract_state(abts4, &state, &state4);
+
+    int value = std::max({*state_map_get(piece1, &state1),*state_map_get(piece2, &state2),*state_map_get(piece3, &state3),*state_map_get(piece4, &state4)});
+
+    return value;   
+};

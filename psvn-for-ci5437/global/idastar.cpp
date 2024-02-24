@@ -33,6 +33,9 @@ Heuristic* get_heuristic(const char* heuristic_type){
     else if(strcmp(heuristic_type, "-ts") == 0){
         return new TopSpin();
     }
+    else if(strcmp(heuristic_type, "-hn") == 0){
+        return new Hanoi();
+    }
 
     return NULL;
 }

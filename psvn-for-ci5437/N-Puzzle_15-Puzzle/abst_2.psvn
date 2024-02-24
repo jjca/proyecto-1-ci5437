@@ -57,5 +57,5 @@ X - - - B - - - - - - - - - - - => B - - - X - - - - - - - - - - - LABEL rule_11
 - - - - - - - - - - - X - - - B => - - - - - - - - - - - B - - - X LABEL rule_47 COST 1
 - - - - - - - - - - - - - - X B => - - - - - - - - - - - - - - B X LABEL rule_48 COST 1
 
-GOAL B B B 4 B B 7 8 9 B 11 B B B B B
-GOAL B B B B 4 B B 7 8 9 B 11 B B B B
+GOAL B B B B B 6 7 8 9 10 B B B B B B
+GOAL B B B B B B 6 7 8 9 10 B B B B B

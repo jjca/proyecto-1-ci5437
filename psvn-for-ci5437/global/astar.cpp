@@ -4,10 +4,17 @@
 #include <fstream>
 #include <string>
 #include <string.h>
+#include <ctime>
+#include <ratio>
+#include <chrono>
 #include "heuristic.hpp"
 using namespace std;
 
 int64_t nodos = 0;
+double max_time = 300;
+std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+std::chrono::high_resolution_clock::time_point timeout = std::chrono::high_resolution_clock::now();
+std::chrono::high_resolution_clock::time_point finish = std::chrono::high_resolution_clock::now();
 
 int a_star(state_t start, Heuristic* h){
     ruleid_iterator_t iter;
@@ -20,6 +27,13 @@ int a_star(state_t start, Heuristic* h){
     state_map_add(map, &start, 0);
 
     while (!queue.Empty()){
+        timeout = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - start);
+
+        if(time_span.count()> max_time){
+            return -1;
+        }
+
         distance = queue.CurrentPriority(); 
         state = queue.Top();
         queue.Pop();
@@ -113,9 +127,11 @@ int main(int argc, char **argv) {
 
         std::cout << "Solving " << content << "\n";
         nodos = 0;
+        start = std::chrono::high_resolution_clock::now();
         int distance = a_star(state, h);
-        nodos = 0;
-        output_file << content << "    " << distance << "\n";
+        finish = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - start);
+        output_file << content << "    " << distance << "    " << nodos << "    " << duration.count() << "\n";
     }
 
     input_file.close();

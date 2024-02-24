@@ -4,6 +4,7 @@
 #include <utility>
 #include <stdlib.h>
 #include <iostream>
+#include <algorithm>
 
 class Heuristic
 {

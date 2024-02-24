@@ -370,3 +370,192 @@ Los resultados son los siguientes:
 ### Comentarios
 
 Tal como se esperaba, la cantidad de nodos disminuye con el pruning además que se logra explorar un poco más profundo el grafo de búsqueda. Las Torres de Hanoi arrojan
+
+
+## Heurísticas
+
+Para este proyecto se usaron los algoritmos de búsqueda informados A* e IDA*, los cuales usan heurísticas para mejorar su comportamiento. Las heurísticas usadas fueron PDBs aditivas, el máximo de varias PDB y distancia Manhattan.
+
+Para cada problema se tienen las siguientes heurísticas:
+
+- 15-Puzzle: se usó distancia Manhattan y tres PDBs aditivas con un total de 524.160 estados.
+- 24-Puzzle: se planteó usar PDBs aditivas. Las PDBs no pudieron llegar a ser construidas por limitación de recursos. Una PDB llegó a 23.092.751 estados, y las otras dos a 5.862.457 estados y 19.589.656 estados.
+- Torres de Hanoi: las PDB para las Torres de Hanoi seleccionan el máximo entre cuatro PDB. Se generaron un total de 2 PDB para cada caso.
+  - 12-4 se tienen 2 PDBs con 4096 estados.
+  - 14-4: 2 PDBs, dos con 16384 estados.
+  - 18-4: 2 PDBs con 262.144 estados.
+- Top Spin: con TopSpin se generaron 3 PDB para cada caso. 
+  - 12-4: una con 11880, otra con 655280 casos y 11880 casos.
+  - 14-4: una de 24024 estados, otra de 17.297.280 y otra de 240240 estados.
+  - 17-4: una con 57120 estados, otra con 8910720 estados y una que no pudo ser generada.
+- Rubik: no fue posible generar los PDB de Rubik.
+## Resultados de las ejecuciones
+
+Se ejecutaron los algoritmos A* e IDA* y se obtuvieron los siguientes resultados:
+
+### Hanoi 4-12 A* 005
+|Profundidad|Nodos|
+|----|----|
+9|47
+2|5
+5|11
+9|42
+2|5
+5|11
+9|47
+2|5
+9|44
+5|11
+
+
+### Hanoi 4-12 A* 010
+|Profundidad|Nodos|
+|----|----|
+5|11
+20|185
+2|5
+2|5
+9|42
+2|5
+14|98
+14|87
+14|87
+14|98
+
+### Hanoi 4-12 A* 015
+|Profundidad|Nodos|
+|----|----|
+9|44
+20|183
+5|11
+5|11
+14|98
+14|87
+9|44
+5|11
+20|177
+14|98
+
+### Hanoi 4-12 A* 2000
+|Profundidad|Nodos|
+|----|----|
+225|255445
+445|10813796
+351|2698219
+364|2476355
+343|3117106
+469|15384095
+182|117599
+515|17232062
+259|595639
+129|22892
+
+### Hanoi 4-12 IDA* 005
+|Profundidad|Nodos|
+|----|----|
+48|89
+40|1
+42|15
+44|176
+42|1
+44|65
+48|89
+38|1
+44|17
+44|73
+
+### Hanoi 4-12 IDA* 010
+|Profundidad|Nodos|
+|----|----|
+44|65
+47|8190
+42|1
+40|1
+43|102
+38|1
+50|2480
+45|84
+48|36093
+44|77 
+
+### Hanoi 4-12 IDA* 015
+|Profundidad|Nodos|
+|----|----|
+43|107
+52|10467
+42|40
+46|19
+46|85
+49|171292
+44|17
+42|40
+54|6643527
+50|2480
+
+El caso de Hanoi 4-12 con A* e IDA* no pudo ser generado por dar el error "stack smashing detected".
+
+### TopSpin 12-4 A* 005
+|Profundidad|Nodos|
+|----|----|
+20|1680
+19|2352
+20|1788
+19|1680
+18|2508
+20|1764
+20|1920
+20|1740
+20|1728
+20|2256
+
+### TopSpin 12-4 A* 010
+|Profundidad|Nodos|
+|----|----|
+48|4800024
+14|324
+36|276720
+35|326160
+38|139776
+34|434940
+14|324
+38|386916
+39|105108
+40|297408
+
+### TopSpin 12-4 A* 015
+|Profundidad|Nodos|
+|----|----|
+36|240828
+37|292404
+41|454704
+52|3144048
+53|13859232
+36|336192
+44|2142156
+50|4235856
+45|1483932
+37|389148
+
+### TopSpin 12-4 A* 2000
+|Profundidad|Nodos|
+|----|----|
+40|617244
+33|77820
+43|2916432
+41|1545144
+44|1127616
+57|19374696
+33|47544
+43|379644
+51|4864020
+47|1587408
+
+El caso de TopSpin 12-4 con IDA* no pudo ser ejecutado por el error "stack smashing detected".
+
+## Conclusiones
+
+Gracias a la eliminación de duplicados, se observó una menor cantidad de nodos además que el factor de ramificación de los árboles de búsqueda se redujeron en comparativa a cuando no hay eliminación de duplicaods. 
+
+El desempeño del algoritmo A* es mejor para ciertos casos que el algoritmo de IDA*. Hubo varias ejecuciones donde no se pudo realizar completamnete debido a que IDA* demoraba más, pero otras donde A* sí podía hacer la ejecución.
+
+Los tiempos de ejecución en varios casos fueron de pocos segundos, como son Hanoi 

@@ -33,9 +33,6 @@ Heuristic* get_heuristic(const char* heuristic_type){
     else if(strcmp(heuristic_type, "-ts") == 0){
         return new TopSpin();
     }
-    else if(strcmp(heuristic_type, "-hn") == 0){
-        return new Hanoi();
-    }
 
     return NULL;
 }
@@ -56,7 +53,7 @@ pair<bool, unsigned int> f_bounded_dfs_visit(unsigned int bound, unsigned int g,
     std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - init);
 
     if(time_span.count()> max_time){
-        return make_pair(false,-1);
+        return make_pair(true,-1);
     }
     if (f > bound){
         return make_pair(false,f);

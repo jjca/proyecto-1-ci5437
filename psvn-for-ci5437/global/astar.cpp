@@ -12,7 +12,7 @@ using namespace std;
 
 int64_t nodos = 0;
 double max_time = 300;
-std::chrono::high_resolution_clock::time_point start = std::chrono::high_resolution_clock::now();
+std::chrono::high_resolution_clock::time_point start_time = std::chrono::high_resolution_clock::now();
 std::chrono::high_resolution_clock::time_point timeout = std::chrono::high_resolution_clock::now();
 std::chrono::high_resolution_clock::time_point finish = std::chrono::high_resolution_clock::now();
 
@@ -28,7 +28,7 @@ int a_star(state_t start, Heuristic* h){
 
     while (!queue.Empty()){
         timeout = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - start);
+        std::chrono::duration<double> time_span = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - start_time);
 
         if(time_span.count()> max_time){
             return -1;
@@ -80,7 +80,7 @@ int a_star(state_t start, Heuristic* h){
 Heuristic* get_heuristic(const char* heuristic_type){
     if(strcmp(heuristic_type, "-m") == 0){
         return new ManhattanHeuristic();
-    }
+    }/*
     else if(strcmp(heuristic_type, "-p15") == 0){
         return new Puzzle15PDB();
     }
@@ -92,7 +92,7 @@ Heuristic* get_heuristic(const char* heuristic_type){
     }
     else if(strcmp(heuristic_type, "-ts") == 0){
         return new TopSpin();
-    }
+    }*/
     else if(strcmp(heuristic_type, "-hn") == 0){
         return new Hanoi();
     }
@@ -130,10 +130,10 @@ int main(int argc, char **argv) {
 
         std::cout << "Solving " << content << "\n";
         nodos = 0;
-        start = std::chrono::high_resolution_clock::now();
+        start_time = std::chrono::high_resolution_clock::now();
         int distance = a_star(state, h);
         finish = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - start);
+        std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::duration<double>>(timeout - start_time);
         output_file << content << "    " << distance << "    " << nodos << "    " << duration.count() << "\n";
     }
 

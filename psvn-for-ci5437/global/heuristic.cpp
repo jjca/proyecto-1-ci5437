@@ -198,4 +198,29 @@ int TopSpin::get_value(state_t state)
     int value = std::max({*state_map_get(piece1, &state1),*state_map_get(piece2, &state2),*state_map_get(piece3, &state3)});
 
     return value;   
-}
+};
+
+Hanoi::Hanoi()
+{
+    FILE* file1 = fopen("abst_1.pdb","r");
+    FILE* file2 = fopen("abst_2.pdb","r");
+
+    abts1 = read_abstraction_from_file("abst_1.abst");
+    abts2 = read_abstraction_from_file("abst_2.abst");
+
+    piece1 = read_state_map(file1);
+    piece2 = read_state_map(file2);
+
+    fclose(file1);
+    fclose(file2);
+};
+
+int Hanoi::get_value(state_t state)
+{
+    abstract_state(abts1, &state, &state1);
+    abstract_state(abts2, &state, &state2);
+
+    int value = std::max({*state_map_get(piece1, &state1),*state_map_get(piece2, &state2)});
+
+    return value;   
+};

@@ -550,6 +550,61 @@ El caso de Hanoi 4-12 con A* e IDA* no pudo ser generado por dar el error "stack
 51|4864020
 47|1587408
 
+### TopSpin 14-4 A* 005
+|Profundidad|Nodos|
+|----|----|
+20|1960
+17|2842
+20|1498
+20|2142
+20|2212
+20|1344
+20|1666
+20|2464
+20|2604
+20|2436
+
+### TopSpin 14-4 A* 010
+|Profundidad|Nodos|
+|----|----|
+54|10295768
+56|13468602
+41|325080
+59|5450102
+57|8741964
+55|9017092
+56|15018500
+27|3906
+40|222880
+42|178864
+
+### TopSpin 14-4 A* 015
+|Profundidad|Nodos|
+|----|----|
+57|2294838
+68|289206918
+57|29010184
+66|45274208
+73|227520468
+58|4421550
+47|3737286
+60|16438128
+72|259576702
+59|7377174
+
+### TopSpin 14-4 A* 2000
+|Profundidad|Nodos|
+|----|----|
+71|243711342
+68|159107550
+70|140958734
+76|243291272
+70|264782420
+67|52916416
+68|149942016
+76|359033248
+75|312826402
+73|396477130
 
 ### TopSpin 12-4 IDA* 005
 |Instancia|Profundidad|Nodos Generados|Distancia|
@@ -792,69 +847,6 @@ El caso de Hanoi 4-12 con A* e IDA* no pudo ser generado por dar el error "stack
 
 ### 24-Puzzle (Subconjunto de los ejemplos de benchmarks)
 No se pudieron obtener resultados debido a la falta de recursos.
-
-### TopSpin 14-4 A* 005
-|Profundidad|Nodos|
-|----|----|
-20|1960
-17|2842
-20|1498
-20|2142
-20|2212
-20|1344
-20|1666
-20|2464
-20|2604
-20|2436
-
-### TopSpin 14-4 A* 010
-|Profundidad|Nodos|
-|----|----|
-54|10295768
-56|13468602
-41|325080
-59|5450102
-57|8741964
-55|9017092
-56|15018500
-27|3906
-40|222880
-42|178864
-
-### TopSpin 14-4 A* 015
-|Profundidad|Nodos|
-|----|----|
-57|2294838
-68|289206918
-57|29010184
-66|45274208
-73|227520468
-58|4421550
-47|3737286
-60|16438128
-72|259576702
-59|7377174
-
-### TopSpin 14-4 A* 2000
-|Profundidad|Nodos|
-|----|----|
-71|243711342
-68|159107550
-70|140958734
-76|243291272
-70|264782420
-67|52916416
-68|149942016
-76|359033248
-75|312826402
-73|396477130
-
-### TopSpin 17-4 A* 005
-|Profundidad|Nodos|
-|----|----|
-
-
-Para 15Puzzle y 24Puzzle no se lograron obtener resultados.
 
 ## Conclusiones
 Es importante destacar que se agregó un timer que detiene la ejecución del problema actual luego de 5 minutos. Una vez que esto ocurre, pasa al siguiente problema. Esto se hizo con el fin de colocar un tiempo límite y poder conseguir datos con la mayor cantidad de ejercicios posibles, sin comprometer demasiado las pruebas.
